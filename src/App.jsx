@@ -1,20 +1,31 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import { css } from '@emotion/core'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Global, css } from '@emotion/core'
+
+import Home from './home/home'
+
+const appWrapperCss = css`
+  height: 100vh;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React STUFF!
-        </a>
-      </header>
+    <div className="app">
+      <Router>
+        <Global
+          styles={css`
+            body {
+              margin: 0;
+              padding: 0;
+            }
+          `}
+        />
+        <div className="app-wrapper" css={appWrapperCss}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
     </div>
   )
 }
