@@ -39,6 +39,15 @@ const arrowTopRowCss = css`
 
 const arrowCss = css`
   height: 80px;
+  &[direction='up'] {
+    transform: rotate(-90deg);
+  }
+  &[direction='down'] {
+    transform: rotate(90deg);
+  }
+  &[direction='left'] {
+    transform: rotate(180deg);
+  }
   &:hover {
     filter: invert();
   }
@@ -52,17 +61,17 @@ export default function Home() {
       {/* <Footer /> */}
       <div css={arrowWrapperCss}>
         <div css={arrowTopRowCss}>
-          <img src={arrow} alt="" css={arrowCss} />
+          <img direction="up" up src={arrow} alt="" css={arrowCss} />
         </div>
         <div css={arrowBottomRowCss}>
           {/* <div css={arrowCss}> */}
-          <img src={arrow} alt="" css={arrowCss} />
+          <img direction="left" src={arrow} alt="" css={arrowCss} />
           {/* </div> */}
           {/* <div css={arrowCss}> */}
-          <img src={arrow} alt="" css={arrowCss} />
+          <img direction="down" src={arrow} alt="" css={arrowCss} />
           {/* </div> */}
           {/* <div css={arrowCss}> */}
-          <img src={arrow} alt="" css={arrowCss} />
+          <img direction="right" src={arrow} alt="" css={arrowCss} />
           {/* </div> */}
         </div>
       </div>
