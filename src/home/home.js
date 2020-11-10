@@ -48,31 +48,57 @@ const arrowCss = css`
   &[direction='left'] {
     transform: rotate(180deg);
   }
-  &:hover {
+  &[active='true'] {
     filter: invert();
   }
 `
 
 export default function Home() {
+  document.addEventListener('keydown', toggleArrowOn)
+  document.addEventListener('keyup', toggleArrowOff)
+
+  function toggleArrowOn(e) {
+    if (e.keyCode === 38) {
+      document.getElementById('up').setAttribute('active', 'true')
+    }
+    if (e.keyCode === 37) {
+      document.getElementById('left').setAttribute('active', 'true')
+    }
+    if (e.keyCode === 40) {
+      document.getElementById('down').setAttribute('active', 'true')
+    }
+    if (e.keyCode === 39) {
+      document.getElementById('right').setAttribute('active', 'true')
+    }
+  }
+
+  function toggleArrowOff(e) {
+    if (e.keyCode === 38) {
+      document.getElementById('up').setAttribute('active', 'false')
+    }
+    if (e.keyCode === 37) {
+      document.getElementById('left').setAttribute('active', 'false')
+    }
+    if (e.keyCode === 40) {
+      document.getElementById('down').setAttribute('active', 'false')
+    }
+    if (e.keyCode === 39) {
+      document.getElementById('right').setAttribute('active', 'false')
+    }
+  }
+
   return (
     <div css={homePageWrapperCss}>
       <Navbar />
       <div css={homeContentWrapperCss}>Home Page content</div>
-      {/* <Footer /> */}
       <div css={arrowWrapperCss}>
         <div css={arrowTopRowCss}>
-          <img direction="up" up src={arrow} alt="" css={arrowCss} />
+          <img direction="up" id="up" active="false" up src={arrow} alt="" css={arrowCss} />
         </div>
         <div css={arrowBottomRowCss}>
-          {/* <div css={arrowCss}> */}
-          <img direction="left" src={arrow} alt="" css={arrowCss} />
-          {/* </div> */}
-          {/* <div css={arrowCss}> */}
-          <img direction="down" src={arrow} alt="" css={arrowCss} />
-          {/* </div> */}
-          {/* <div css={arrowCss}> */}
-          <img direction="right" src={arrow} alt="" css={arrowCss} />
-          {/* </div> */}
+          <img direction="left" id="left" active="false" src={arrow} alt="" css={arrowCss} />
+          <img direction="down" id="down" active="false" src={arrow} alt="" css={arrowCss} />
+          <img id="right" active="false" src={arrow} alt="" css={arrowCss} />
         </div>
       </div>
     </div>
