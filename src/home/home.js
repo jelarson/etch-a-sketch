@@ -96,9 +96,11 @@ export default function Home() {
     }
     if (e.keyCode === 40) {
       document.getElementById('down').setAttribute('active', 'true')
+      moveSvg(15, 0)
     }
     if (e.keyCode === 39) {
       document.getElementById('right').setAttribute('active', 'true')
+      moveSvg(0, 15)
     }
   }
 
@@ -110,7 +112,7 @@ export default function Home() {
   function toggleArrowOff(e) {
     if (e.keyCode === 38) {
       document.getElementById('up').setAttribute('active', 'false')
-      setActiveLine(activeLine.concat(`L${moveHoriz} ${moveVert}`))
+      setActiveLine(activeLine.concat(`L${moveVert} ${moveHoriz}`))
     }
     if (e.keyCode === 37) {
       document.getElementById('left').setAttribute('active', 'false')
@@ -118,9 +120,11 @@ export default function Home() {
     }
     if (e.keyCode === 40) {
       document.getElementById('down').setAttribute('active', 'false')
+      setActiveLine(activeLine.concat(`L${moveVert} ${moveHoriz}`))
     }
     if (e.keyCode === 39) {
       document.getElementById('right').setAttribute('active', 'false')
+      setActiveLine(activeLine.concat(`L${moveVert} ${moveHoriz}`))
     }
   }
 
@@ -138,6 +142,9 @@ export default function Home() {
           {/* <circle cx="50" cy="50" r="40" /> */}
           {/* <path d="M150 100 L152 100 " strokeWidth="3" fill="none" stroke="black" /> */}
           <path d={activeLine} strokeWidth="3" fill="none" stroke="black" />
+          <g stroke="black" strokeWidth="3" fill="black">
+            <circle id="pointA" cx="150" cy="100" r="3" />
+          </g>
         </svg>
         <div css={arrowWrapperCss}>
           <div css={arrowTopRowCss}>
